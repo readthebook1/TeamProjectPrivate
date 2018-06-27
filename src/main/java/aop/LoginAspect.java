@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 import exception.ProjectException;
 import logic.Member;
 
-@Component // 媛�泥댄��111
-@Aspect // AOP�대���� 吏�移�
+@Component // 객체화
+@Aspect // AOP클래스 지칭 test
 public class LoginAspect {
 
-	// MemberController.mypage(String id, HttpSession session) 硫����� �몄� ����
-	// memberLoginCheck(..)硫����� �몄�
+	// MemberController.mypage(String id, HttpSession session) 메서드 호출 전에
+	// memberLoginCheck(..)메서드 호출
 	
 	@Around("execution(* controller.Member*.my*(..))")
 	public Object memberLoginCheck(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -29,22 +29,22 @@ public class LoginAspect {
 			session = (HttpSession) joinPoint.getArgs()[2];
 			id = paramMember.getId();
 		} else {
-			id = (String) joinPoint.getArgs()[0]; // ���쇰�명�� id 媛�
-			session = (HttpSession) joinPoint.getArgs()[1]; // session 媛�
+			id = (String) joinPoint.getArgs()[0]; // 파라미터 id 값
+			session = (HttpSession) joinPoint.getArgs()[1]; // session 값
 		}
 
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		
-		if (loginMember == null) {throw new ProjectException("濡�洹몄�� �� 嫄곕�����몄��.", "../main.test");}
+		if (loginMember == null) {throw new ProjectException("로그인 후 거래하세요.", "../main.test");}
 		if (!id.equals(loginMember.getId()) && !loginMember.getId().equals("admin")) {
-			throw new ProjectException("蹂몄�몃� 嫄곕�� 媛��ν�⑸����.", "../main.test");
+			throw new ProjectException("본인만 거래 가능합니다.", "../main.test");
 		}
 		
-		Object ret = joinPoint.proceed(); // CoreAlgolism �ㅽ��
+		Object ret = joinPoint.proceed(); // CoreAlgolism 실행
 		return ret;
 	}
 	
-	//adminLoginCheck() 硫�����
+	//adminLoginCheck() 메서드
 	@Around("execution(* controller.Admin*.admin*(..))")
 	public Object adminLoginCheck(ProceedingJoinPoint joinPoint) throws Throwable {
 		
@@ -58,11 +58,11 @@ public class LoginAspect {
 				loginMember = (Member)session.getAttribute("loginMember");
 				
 				if(loginMember == null) {
-					throw new ProjectException("愿�由ъ��濡� 濡�洹몄�� ���몄��.", "../main.test");
+					throw new ProjectException("관리자로 로그인 하세요.", "../main.test");
 				}
 				
 				if(!loginMember.getId().equals("admin")) {
-					throw new ProjectException("愿�由ъ��留� 媛��ν�� 嫄곕��������.", "../main.test");
+					throw new ProjectException("관리자만 가능한 거래입니다.", "../main.test");
 				}
 				
 				adminable = true;
@@ -71,7 +71,7 @@ public class LoginAspect {
 		}
 		
 		if(!adminable) {
-			throw new ProjectException("���곕�濡� �������몄��. �몄�� 媛�泥닿� ��援щ��.", "../main.test");
+			throw new ProjectException("전산부로 전화하세요. 세션 객체가 요구됨.", "../main.test");
 		}
 		
 		Object ret = joinPoint.proceed();
