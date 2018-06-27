@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.net.URL" %>
 <%@ page import="java.net.HttpURLConnection" %>
@@ -9,14 +9,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>�α���</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>로그인</title>
 </head>
 
 <body>
   <%
-    String clientId = "fQHmBIktkqRQ2R4n1AS5";//���ø����̼� Ŭ���̾�Ʈ ���̵�";
-    String clientSecret = "CdWQrQStac";//���ø����̼� Ŭ���̾�Ʈ ��ũ����";
+    String clientId = "fQHmBIktkqRQ2R4n1AS5";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "CdWQrQStac";//애플리케이션 클라이언트 시크릿값";
     String code = request.getParameter("code");
     String state = request.getParameter("state");
     String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");
@@ -39,9 +39,9 @@
       BufferedReader br;
       System.out.print("responseCode="+responseCode);
       
-      if(responseCode==200) { // ���� ȣ��
+      if(responseCode==200) { // 정상 호출
         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-      } else {  // ���� �߻�
+      } else {  // 에러 발생
         br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
       }
       

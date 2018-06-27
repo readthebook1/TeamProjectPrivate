@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%-- /WebContent/decorator/hello_decorator.jsp --%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,7 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>		<decorator:title/>		</title>
 
 <decorator:head/>
@@ -23,21 +23,21 @@
 	</td> </tr>
 	<tr> <td width="15%" align="right" valign="top"><br>
 	<c:if test="${empty sessionScope.login }">
-		<a href="${path}/model2/member/loginForm.jsp">·Î±×ÀÎ</a><br>
+		<a href="${path}/model2/member/loginForm.jsp">ë¡œê·¸ì¸</a><br>
 	</c:if>
 	
-	<c:if test="${!empty sessionScope.login }">${sessionScope.login }´Ô!
-		<a href="${path}/model2/member/logout.me">·Î±×¾Æ¿ô</a><br>
+	<c:if test="${!empty sessionScope.login }">${sessionScope.login }ë‹˜!
+		<a href="${path}/model2/member/logout.me">ë¡œê·¸ì•„ì›ƒ</a><br>
 	</c:if>
-	<a href="${path}/model2/member/main.me">È¸¿ø°ü¸®</a><br>
-	<a href="${path}/model2/board/list.bo">°Ô½ÃÆÇ</a><br>
+	<a href="${path}/model2/member/main.me">íšŒì›ê´€ë¦¬</a><br>
+	<a href="${path}/model2/board/list.bo">ê²Œì‹œíŒ</a><br>
 	</td> <td colspan="2" align="left">
 	
 	<decorator:body/>
 	
 	 </td>
 	</tr>
-	<tr> <td colspan="3" align="right">±¸µð ¾ÆÄ«µ¥¹Ì since 2016</td> </tr>
+	<tr> <td colspan="3" align="right">êµ¬ë”” ì•„ì¹´ë°ë¯¸ since 2016</td> </tr>
 </table>
 </body>
 </html>

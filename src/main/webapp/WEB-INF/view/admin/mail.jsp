@@ -1,43 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¸ÞÀÏ º¸³»±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ë©”ì¼ ë³´ë‚´ê¸°</title>
 <script type="text/javascript" src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
 </head>
 <body>
-	<h2>¸ÞÀÏ º¸³»±â</h2>
+	<h2>ë©”ì¼ ë³´ë‚´ê¸°</h2>
 	<form name="mailform" method="post" action="mail.test" enctype="multipart/form-data">
-		³×ÀÌ¹ö ¸ÞÀÏ ÁÖ¼Ò : <input type="text" name="naverid" value=""> &nbsp;&nbsp;&nbsp;
-		³×ÀÌ¹ö ºñ¹Ð ¹øÈ£ : <input type="password" name="naverpass" value="">
+		ë„¤ì´ë²„ ë©”ì¼ ì£¼ì†Œ : <input type="text" name="naverid" value=""> &nbsp;&nbsp;&nbsp;
+		ë„¤ì´ë²„ ë¹„ë°€ ë²ˆí˜¸ : <input type="password" name="naverpass" value="">
 		<table border="1" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
-				<td>º¸³»´Â»ç¶÷</td>
+				<td>ë³´ë‚´ëŠ”ì‚¬ëžŒ</td>
 				<td>${sessionScope.loginUser.email}</td>
 			</tr>
 			<tr>
-				<td>¹Þ´Â»ç¶÷</td>
+				<td>ë°›ëŠ”ì‚¬ëžŒ</td>
 				<td><input type="text" name="recipient" size="100" value='<c:forEach items="${userList}" var="user">${user.userName}&lt; ${user.email}&gt;</c:forEach>'></td>
 			</tr>
 			<tr>
-				<td>Á¦¸ñ</td>	<td><input type="text" name="title" size="100"></td>
+				<td>ì œëª©</td>	<td><input type="text" name="title" size="100"></td>
 			</tr>
 			<tr>
-				<td>¸Þ½ÃÁöÇü½Ä</td>
+				<td>ë©”ì‹œì§€í˜•ì‹</td>
 				<td><select name="mtype">
 					<option value="text/html;charset=euc-kr">HTML</option>
 					<option value="text/plain;charset=euc-kr">TEXT</option>
 				</select></td>
 			</tr>
 			<tr>
-				<td>Ã·ºÎÆÄÀÏ1</td>
+				<td>ì²¨ë¶€íŒŒì¼1</td>
 				<td><input type="file" name="file1"></td>
 			</tr>
 			<tr>
-				<td>Ã·ºÎÆÄÀÏ2</td>
+				<td>ì²¨ë¶€íŒŒì¼2</td>
 				<td><input type="file" name="file1"></td>
 			</tr>
 			<tr>
@@ -46,7 +46,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="¸ÞÀÏº¸³»±â"></td>
+				<td colspan="2" align="center"><input type="submit" value="ë©”ì¼ë³´ë‚´ê¸°"></td>
 			</tr>
 		</table>
 	</form>

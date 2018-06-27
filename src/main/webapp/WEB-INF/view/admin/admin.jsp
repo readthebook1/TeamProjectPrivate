@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
 <%-- /WebContent/WEB-INF/view/admin/admin.jsp --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<title>°ü¸®ÀÚ</title>
+<title>ê´€ë¦¬ìž</title>
 <script type="text/javascript">
 	function allchkbox(chk) {
 		
@@ -30,11 +30,11 @@
 	<table class="w3-table w3-striped">
 		
 		<tr>
-			<td colspan="7" align="center">È¸¿ø¸ñ·Ï</td>
+			<td colspan="7" align="center">íšŒì›ëª©ë¡</td>
 		</tr>
 		
 		<tr>
-			<td>¾ÆÀÌµð</td><td>ÀÌ¸§</td><td>ÀüÈ­¹øÈ£</td><td>ÀÌ¸ÞÀÏ</td><td>»ýÀÏ</td><td>ºñ°í</td>
+			<td>ì•„ì´ë””</td><td>ì´ë¦„</td><td>ì „í™”ë²ˆí˜¸</td><td>ì´ë©”ì¼</td><td>ìƒì¼</td><td>ë¹„ê³ </td>
 			<td><input type="checkbox" name="allchk" onchange="allchkbox(this)"></td>
 		</tr>
 		
@@ -42,9 +42,9 @@
 		<tr>
 			<td>${user.userId}</td><td>${user.userName}</td><td>${user.phoneNo}</td><td>${user.email}</td>
 			<td><fmt:formatDate value="${user.birthDay}" pattern="yyyy-MM-dd"/></td>
-			<td><a href="../user/update.shop?id=${user.userId}">¼öÁ¤</a>
-				<c:if test="${user.userId != 'admin'}"><a href="../user/delete.shop?id=${user.userId}">»èÁ¦</a></c:if>
-			<a href="../user/mypage.shop?id=${user.userId}">Á¤º¸</a></td>
+			<td><a href="../user/update.shop?id=${user.userId}">ìˆ˜ì •</a>
+				<c:if test="${user.userId != 'admin'}"><a href="../user/delete.shop?id=${user.userId}">ì‚­ì œ</a></c:if>
+			<a href="../user/mypage.shop?id=${user.userId}">ì •ë³´</a></td>
 			<td><input type="checkbox" name="idchks" value="${user.userId}"></td>
 		</tr>
 		</c:forEach>
@@ -52,7 +52,7 @@
 		<tr>
 			<td colspan="7" align="center">
 				<input type="submit" value="SendEmail">
-				<input type="button" value="Graph(¥ð)" onclick="graph_open('graph1')">
+				<input type="button" value="Graph(Ï€)" onclick="graph_open('graph1')">
 				<input type="button" value="Graph(Cloud)" onclick="graph_open('graph2')">
 			</td>
 		</tr>

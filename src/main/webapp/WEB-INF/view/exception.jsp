@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" isErrorPage="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isErrorPage="true"%>
 <%-- /WebContent/WEB-INF/view/exception.jsp --%>
-<%-- isErrorPage="true" : ¿©±â ¿¡·¯ÆäÀÌÁö ³ª¾ß ³ª ³ª¾ß ³ª --%>
-<%-- exception °´Ã¼°¡ ÀÖÀ» ¶§¿¡ ÀÌ ÆäÀÌÁö·Î ÀÌµ¿µÇ¸ç, ÇØ´ç exception °´Ã¼°¡ Àü´Þ µÊ. --%>
+<%-- isErrorPage="true" : ì—¬ê¸° ì—ëŸ¬íŽ˜ì´ì§€ ë‚˜ì•¼ ë‚˜ ë‚˜ì•¼ ë‚˜ --%>
+<%-- exception ê°ì²´ê°€ ìžˆì„ ë•Œì— ì´ íŽ˜ì´ì§€ë¡œ ì´ë™ë˜ë©°, í•´ë‹¹ exception ê°ì²´ê°€ ì „ë‹¬ ë¨. --%>
 <script type="text/javascript">
 	alert('${exception.message}');
 	location.href="${exception.url}";
