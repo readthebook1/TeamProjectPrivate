@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- /WebContent/WEB-INF/decorators.xml -->
+<decorators defaultdir="/decorator">
+	
+	<decorator page="decorator.jsp" name="main">
+		<pattern>*sms</pattern>
+	</decorator>
+	
+	
+	<!-- layout 설정을 제외 함. -->
+	<excludes>
+		<pattern>/admin/graph*</pattern>
+		<pattern>/user/mygraph*</pattern>
+	</excludes>
+
+</decorators>

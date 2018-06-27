@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- main/resources/dao/mapper/Building.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.ReserveMapper">
+	<select id="list" resultType="Reserve" parameterType="map">
+		select * from Reserve
+		<if test="id != null">
+			where id = #{id}
+		</if>
+	</select>
+	
+	<select id="selectList" resultType="Reserve" parameterType="list">
+		select * from Member where id in 
+		<foreach collection="list" item="value" separator="," open="(" close=")">
+			#{value}
+		</foreach>
+		and not id = 'admin'
+	</select>
+</mapper>

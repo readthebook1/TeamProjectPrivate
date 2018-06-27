@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- /WenContent/WEB-INF/sitemesh.xml -->
+<sitemesh>
+<property value="/WEB-INF/decorator.xml" name="decorators-file"/>
+
+<excludes file="${decorators-file}"/>
+	<page-parsers>
+		<parser class="com.opensymphony.module.sitemesh.parser.HTMLPageParser" content-type="text/html"/>
+	</page-parsers>
+
+<decorator-mappers>
+	<mapper class="com.opensymphony.module.sitemesh.mapper.ConfigDecoratorMapper">
+		<param value="${decorators-file}" name="config"/>
+	</mapper>
+</decorator-mappers>
+
+</sitemesh>
