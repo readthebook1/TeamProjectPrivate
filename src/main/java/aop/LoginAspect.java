@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import exception.ProjectException;
 import logic.Member;
 
-@Component // 객체화 11345
+@Component // 객체화 113456
 @Aspect // AOP클래스 지칭 test
 public class LoginAspect {
 
