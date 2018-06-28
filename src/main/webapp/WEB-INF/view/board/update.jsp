@@ -34,7 +34,7 @@
 			}
 		</script>
 	
-		<tr><td align="center" colspan="2"><a href="javascript:document.f.submit()">[게시물수정]</a>&nbsp;&nbsp;<a href="list.shop?pageNum=${param.pageNum}">[게시판목록]</a></td></tr>
+		<tr><td align="center" colspan="2"><a href="javascript:document.f.submit()">[게시물수정]</a>&nbsp;&nbsp;<a href="listex.sms?pageNum=${param.pageNum}">[게시판목록]</a></td></tr>
 	</table>
 </form:form>
 

@@ -17,7 +17,7 @@
 	<div class="w3-panel w3-leftbar w3-border-green w3-text-dark-gray">
 	
 	Writer : ${board.id}<br>
-	<p>Date : <fmt:formatDate value="${board.regdate}"  pattern="yyyy-MM-dd HH:mm" /></p>
+	<p>Date : <fmt:formatDate value="${board.regDate}"  pattern="yyyy-MM-dd HH:mm" /></p>
 	</div>
 	
   <div class="w3-panel w3-bottombar w3-leftbar w3-border-teal" style="width:70%">
@@ -28,10 +28,10 @@
    <input type="hidden" name="bNo" value="${board.bNo}">
    <input type="hidden" name="pageNum" value="${param.pageNum}">
   	<div class="w3-panel" align="right" style="width:70%" >
-  	<a href="reply.shop?num=${board.bNo}&pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-reply-all">&nbsp;Reply</i></font></a>
-  	<a href="list.shop?pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-list-alt">&nbsp;List</i></font></a>
-  	<a href="update.shop?num=${board.bNo}&pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-edit" >&nbsp;Edit</i></font></a>
-  	<a href="delete.shop?num=${board.bNo}&pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-trash-o">&nbsp;Delete</i></font></a>
+  	<a href="reply.sms?bNo=${board.bNo}&pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-reply-all">&nbsp;Reply</i></font></a>
+  	<a href="list.sms?pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-list-alt">&nbsp;List</i></font></a>
+  	<a href="update.sms?bNo=${board.bNo}&pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-edit" >&nbsp;Edit</i></font></a>
+  	<a href="delete.sms?bNo=${board.bNo}&pageNum=${param.pageNum}"><font class="w3-btn" style="color:gray;"><i class="fa fa-trash-o">&nbsp;Delete</i></font></a>
   	<br>
 	</div>
 	</form>
