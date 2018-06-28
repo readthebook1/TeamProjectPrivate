@@ -1,24 +1,27 @@
 package logic;
 
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import dao.BoardDao;
 import dao.MemberDao;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
 	private MemberDao memDao;
-	
-	
+	private BoardDao boDao;
+
 	@Override
 	public Member getMember(String id) {
 		return memDao.select(id);
 	}
-
 
 	@Override
 	public int boardcount(String searchType, String searchContent) {
@@ -26,20 +29,39 @@ public class ProjectServiceImpl implements ProjectService {
 		return 0;
 	}
 
-
 	@Override
 	public List<Board> boardList(String searchType, String searchContent, Integer pageNum, int limit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	@Override
 	public void boardWrite(Board board, HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
 
+		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 íŒŒì¼ì´ ìˆì„ ê²½ìš°
+			String img = uploadImgCreate(board.getImg1File(),request);	// ì‚¬ì§„ì„ ì—…ë¡œë“œí•˜ê³  ì—…ë¡œë“œí•œ íŒŒì¼ëª…ì„ ë¦¬í„´ê°’ìœ¼ë¡œ ë°›ì•„ì˜´.
+			if(img != null) board.setImg1(img); // ë°›ì•„ì˜¨ ë¦¬í„´ê°’ì´ nullì´ ì•„ë‹Œ ê²½ìš° Board ê°ì²´ì— ì‚¬ì§„ ì´ë¦„ì„ ì €ì¥
+		}
+		
+		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 íŒŒì¼ì´ ìˆì„ ê²½ìš°
+			String img = uploadImgCreate(board.getImg2File(),request);
+			if(img != null) board.setImg2(img);
+		}
+		
+		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 íŒŒì¼ì´ ìˆì„ ê²½ìš°
+			String img = uploadImgCreate(board.getImg3File(),request);
+			if(img != null) board.setImg3(img);
+		}
+		
+		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 íŒŒì¼ì´ ìˆì„ ê²½ìš°
+			String img = uploadImgCreate(board.getImg1File(),request);
+			if(img != null) board.setImg1(img);
+		}
+		// íŒŒì¼ ì—…ë¡œë“œ ê³¼ì • ë
+		
+		boDao.insert(board);
+
+	}
 
 	@Override
 	public Board getBoard(int num) {
@@ -47,65 +69,46 @@ public class ProjectServiceImpl implements ProjectService {
 		return null;
 	}
 
-
 	@Override
 	public void boardReply(Board board) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void boardUpdate(Board board, HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void boardDelete(Integer num) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void updateReadCnt(Integer num) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-//	private void uploadFileCreate(MultipartFile picture, HttpServletRequest request) {
-//		String uploadPath = request.getServletContext().getRealPath("/") + "/picture/";	// ÆÄÀÏ ¾÷·Îµå À§Ä¡ ¼³Á¤
-//		String orgFile = picture.getOriginalFilename();	// ÆÄÀÏÀÇ ÀÌ¸§ ¼³Á¤
-//
-//		try {
-//			picture.transferTo(new File(uploadPath + orgFile));	// new File(uploadPath + orgFile) : ÆÄÀÏ °´Ã¼ ¼³Á¤
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	private String uploadImgCreate(MultipartFile picture, HttpServletRequest request) { // ë¦¬ë·°ê²Œì‹œíŒì— ì´ë¯¸ì§€ ë“±ë¡ì‹œ ì‚¬ìš©í•˜ëŠ” ë©”ì„œë“œ
 
+		Date date = new Date();
 
-//	@Override
-//	public void itemCreate(Item item, HttpServletRequest request) {
-//
-//		if (item.getPicture() != null && !item.getPicture().isEmpty()) {	//¾÷·Îµå µÈ ÀÌ¹ÌÁö°¡ Á¸ÀçÇÏ´Â °æ¿ì
-//			uploadFileCreate(item.getPicture(), request);	// ÆÄÀÏ »ı¼º
-//			item.setPictureUrl(item.getPicture().getOriginalFilename());	//ÆÄÀÏÀÇ ÀÌ¸§À» µî·Ï
-//			// getPicture() = MultipartFile picture : ¾÷·Îµå µÈ ÆÄÀÏÀÇ Á¤º¸ (ÀÌ¸§, ³»¿ë µî)
-//		}
-//		itemDao.insert(item);
-//
-//	}
+		try {
+			
+			String uploadPath = request.getServletContext().getRealPath("/") + "/picture/"; // ì—…ë¡œë“œ ê²½ë¡œ ì„¤ì •
+			String orgFile = picture.getOriginalFilename() + date.getTime(); // íŒŒì¼ ì´ë¦„(íŒŒì¼ëª… + ì—…ë¡œë“œ ì‹œê°„) ì„¤ì •
+			picture.transferTo(new File(uploadPath + orgFile)); // new File(uploadPath + orgFile) : íŒŒì¼ ê°ì²´ ì„¤ì •
+			
+			return orgFile; // ì €ì¥ëœ íŒŒì¼ ì´ë¦„ì„ ë¦¬í„´
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	} // uploadImgCreate()ë©”ì„œë“œì˜ ë
 
-}
+} // ProjectServiceImpl í´ë˜ìŠ¤ì˜ ë

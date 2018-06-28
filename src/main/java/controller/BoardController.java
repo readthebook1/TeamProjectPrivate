@@ -59,7 +59,7 @@ public class BoardController {
 	 * 
 	 */
 	
-	@RequestMapping(value="board/write", method=RequestMethod.POST)
+	@RequestMapping(value="board/write", method=RequestMethod.POST) // 게시글 작성 시 호출되는 메서드
 	public ModelAndView write(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -74,7 +74,6 @@ public class BoardController {
 		} catch (Exception e) {
 			throw new ProjectException("오류가 발생하였습니다." , "/board/list.test");
 		}
-		
 		return mav;
 	}
 	
@@ -110,7 +109,8 @@ public class BoardController {
 		if(num != null) {
 			board = service.getBoard(num);
 			String url = request.getServletPath();
-			if(url.contains("/board/detail.shop")) {
+			
+			if(url.contains("/board/detail.sms")) {
 				service.updateReadCnt(num);
 			}
 		}

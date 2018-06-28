@@ -2,6 +2,7 @@ package logic;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Board {
@@ -9,7 +10,10 @@ public class Board {
 	private Integer sNo;
 	private String id;
 	private String email;
+	
+	@NotEmpty(message = "내용을 입력하세요.")
 	private String content;
+	
 	private String qType;
 	private Date regDate;
 	private Integer ref;
