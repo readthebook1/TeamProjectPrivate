@@ -35,7 +35,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return null;
 	}
 
-	@Override
+	@Override // 게시글 작성할 때 호출
 	public void boardWrite(Board board, HttpServletRequest request) {
 
 		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 파일이 있을 경우
@@ -57,8 +57,14 @@ public class ProjectServiceImpl implements ProjectService {
 			String img = uploadImgCreate(board.getImg1File(),request);
 			if(img != null) board.setImg1(img);
 		}
-		// 파일 업로드 과정 끝
 		
+		// 파일 업로드 과정 끝
+
+		int num = boDao.maxNum();
+		
+		board.setbNo(++num);
+		board.setRef(num);
+
 		boDao.insert(board);
 
 	}
@@ -75,16 +81,36 @@ public class ProjectServiceImpl implements ProjectService {
 
 	}
 
-	@Override
-	public void boardUpdate(Board board, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+	@Override // 게시글 수정할 때 호출
+	public void boardUpdate(Board board, HttpServletRequest request) {	
+		
+		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 파일이 있을 경우
+			String img = uploadImgCreate(board.getImg1File(),request);	// 사진을 업로드하고 업로드한 파일명을 리턴값으로 받아옴.
+			if(img != null) board.setImg1(img); // 받아온 리턴값이 null이 아닌 경우 Board 객체에 사진 이름을 저장
+		}
+		
+		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 파일이 있을 경우
+			String img = uploadImgCreate(board.getImg2File(),request);
+			if(img != null) board.setImg2(img);
+		}
+		
+		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 파일이 있을 경우
+			String img = uploadImgCreate(board.getImg3File(),request);
+			if(img != null) board.setImg3(img);
+		}
+		
+		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 파일이 있을 경우
+			String img = uploadImgCreate(board.getImg1File(),request);
+			if(img != null) board.setImg1(img);
+		}
+		
+		boDao.update(board);
 
 	}
 
 	@Override
 	public void boardDelete(Integer num) {
-		// TODO Auto-generated method stub
-
+		boDao.delete(num);
 	}
 
 	@Override

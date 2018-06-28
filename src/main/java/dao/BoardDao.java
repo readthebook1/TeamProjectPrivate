@@ -15,11 +15,7 @@ public interface BoardDao {
 
 	void insert(Board board);
 
-	void addReadCnt(Integer num);
-
 	int maxNum();
-
-	void refStepAdd(Board board);
 
 	void update(Board board);
 

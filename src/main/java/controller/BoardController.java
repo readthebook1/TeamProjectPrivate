@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.ProjectException;
 import logic.Board;
+import logic.Member;
 import logic.ProjectService;
 
 @Controller
@@ -51,14 +52,6 @@ public class BoardController {
 	}
 	
 	// 게시글 등록하기
-	/*
-	 * 1. 유효성 검증
-	 * 2. DB에 등록하기
-	 * 3. 등록 성공 시 list.test으로 페이지 이동
-	 * 4. 등록 실패 시 write.test으로 페이지 이동
-	 * 
-	 */
-	
 	@RequestMapping(value="board/write", method=RequestMethod.POST) // 게시글 작성 시 호출되는 메서드
 	public ModelAndView write(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
 		
@@ -77,7 +70,27 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value="board/reply", method=RequestMethod.POST)
+	// 게시글 수정하기
+	@RequestMapping(value="board/update", method=RequestMethod.POST) // 게시글 작성 시 호출되는 메서드
+	public ModelAndView update(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
+			
+			ModelAndView mav = new ModelAndView();
+			
+			if(bindingResult.hasErrors()) {
+				mav.getModel().putAll(bindingResult.getModel());
+				return mav;
+			}
+			try {
+				service.boardUpdate(board, request);
+				mav.setViewName("redirect:/board/list.test");
+			} catch (Exception e) {
+				throw new ProjectException("오류가 발생하였습니다." , "/board/list.test");
+			}
+			return mav;
+		}
+
+	
+	@RequestMapping(value="board/reply", method=RequestMethod.POST) // 댓글 작성 시 호출되는 메서드
 	public ModelAndView reply(@Valid Board board, BindingResult bindingResult) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -99,8 +112,25 @@ public class BoardController {
 		return mav;
 	}
 	
+	@RequestMapping(value="board/delete", method=RequestMethod.POST)
+	public ModelAndView delete(Integer bNo, Member mem, Integer pageNum) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		Board dbBoard = service.getBoard(bNo);
+		
+		if(dbBoard.getId().equals(mem.getId())) {
+			
+			service.boardDelete(bNo);
+			mav.setViewName("redirect:/board/list.shop?pageNum=" + pageNum);
+			return mav;
+		} else {
+			throw new ProjectException("비밀번호 오류","delete.sms?bNo=" + bNo + "&pageNum=" + pageNum);
+		}
+	}
 	
-	@RequestMapping(value="board/*", method=RequestMethod.GET)
+	
+	@RequestMapping(value="board/*", method=RequestMethod.GET) // 게시글 작성 View로 접속할 때 호출되는 메서드
 	public ModelAndView detail(Integer num, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
