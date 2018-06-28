@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.BoardDao;
 import exception.ProjectException;
 import logic.Board;
 import logic.Member;
@@ -61,11 +62,12 @@ public class BoardController {
 			mav.getModel().putAll(bindingResult.getModel());
 			return mav;
 		}
+		
 		try {
 			service.boardWrite(board, request);
-			mav.setViewName("redirect:/board/list.test");
+			mav.setViewName("redirect:/board/listex.sms");
 		} catch (Exception e) {
-			throw new ProjectException("오류가 발생하였습니다." , "/board/list.test");
+			throw new ProjectException("오류가 발생하였습니다." , "/board/listex.sms");
 		}
 		return mav;
 	}

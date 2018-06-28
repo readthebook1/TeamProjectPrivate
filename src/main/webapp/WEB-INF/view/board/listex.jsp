@@ -44,7 +44,7 @@
 		</form></td></tr>
 		
 	<!--  글 본문 -->
-	<c:if test="${listcount>0 }">
+	<c:if test="${listcount > 0}">
 		<tr align="center" valign="middle">
 			<td colspan="4"> 기본 게시판 </td><td>글 갯수:${listcount}</td>
 		</tr>
@@ -61,18 +61,13 @@
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt -1 }"/>
 			<td align="left">
-			<!-- 파일유무 표시 -->
-			<c:if test="${not empty board.fileurl }">
-				<a href="../file/${board.fileurl}">@</a>
-			</c:if>
-			<c:if test="${empty board.fileurl}">&nbsp;&nbsp;&nbsp;</c:if>
 			<!-- 답글 표시 -->
 			<c:forEach begin="1" end="${board.reflevel}">&nbsp;&nbsp;&nbsp;</c:forEach>
 			<c:if test="${board.reflevel>0 }">└	</c:if>
-			<a href="detail.sms?num=${board.num}&pageNum=${pageNum}">${board.subject }</a></td>
-			<td align="left">${board.name}</td>
-			<td align="center">${board.regdate}</td>
-			<td align="left">${board.readcnt}</td></tr>
+			<a href="detail.sms?bNo=${board.bNo}&pageNum=${pageNum}">TESTBOARD</a></td>
+			<td align="left">${board.id}</td>
+			<td align="center">${board.regDate}</td>
+			<td align="left">${board.score}</td></tr>
 			</c:forEach>
 		<!--  글 밑부분  -->
 		<tr align="center" height="26"><td colspan="5">

@@ -9,7 +9,7 @@ import logic.Board;
 
 public interface BoardMapper {
 
-	@Select("select ifnull(max(num),0) from board")
+	@Select("select ifnull(max(bNo),0) from board")
 	int maxNum();
 	
 	@Insert("insert into board(bNo, sNo, id, email, content, qType, regDate, ref, refLevel, score, img1, img2, img3, img4, kind) "
