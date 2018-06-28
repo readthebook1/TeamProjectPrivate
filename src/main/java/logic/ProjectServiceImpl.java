@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,8 +15,10 @@ import dao.MemberDao;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
-
+	
+	@Autowired
 	private MemberDao memDao;
+	@Autowired
 	private BoardDao boDao;
 
 	@Override
@@ -58,7 +61,7 @@ public class ProjectServiceImpl implements ProjectService {
 			if(img != null) board.setImg1(img);
 		}
 		// 파일 업로드 과정 끝
-		
+		System.out.println(boDao.hashCode());
 		int num = boDao.maxNum();
 		
 		board.setbNo(++num);

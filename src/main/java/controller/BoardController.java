@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import dao.BoardDao;
 import exception.ProjectException;
 import logic.Board;
 import logic.Member;
@@ -67,7 +66,8 @@ public class BoardController {
 			service.boardWrite(board, request);
 			mav.setViewName("redirect:/board/listex.sms");
 		} catch (Exception e) {
-			throw new ProjectException("오류가 발생하였습니다." , "/board/listex.sms");
+			e.printStackTrace();
+			throw new ProjectException("오류가 발생하였습니다." , "/board/write.sms");
 		}
 		return mav;
 	}
@@ -133,17 +133,18 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="board/*", method=RequestMethod.GET) // 게시글 작성 View로 접속할 때 호출되는 메서드
-	public ModelAndView detail(Integer num, HttpServletRequest request) {
+	public ModelAndView detail(Integer bNo, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
+		
 		Board board = new Board();
-				
-		if(num != null) {
-			board = service.getBoard(num);
+
+		if(bNo != null) {
+			board = service.getBoard(bNo);
 			String url = request.getServletPath();
 			
 			if(url.contains("/board/detail.sms")) {
-				service.updateReadCnt(num);
+				service.updateReadCnt(bNo);
 			}
 		}
 		

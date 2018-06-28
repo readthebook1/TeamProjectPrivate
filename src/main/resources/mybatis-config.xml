@@ -9,7 +9,6 @@
 		<typeAlias type="logic.Member" alias="Member"/>
 		<typeAlias type="logic.Reserve" alias="Reserve"/>		
 		<typeAlias type="logic.Room" alias="Room"/>
-		
 	</typeAliases>
 	
 	<mappers>
