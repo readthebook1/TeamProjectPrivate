@@ -65,7 +65,7 @@
 			<c:if test="${not empty board.fileurl }">
 				<a href="../file/${board.fileurl}">@</a>
 			</c:if>
-			<c:if test="${empty board.fileurl}">&nbsp;&nbsp;&nbsp;</c:if >
+			<c:if test="${empty board.fileurl}">&nbsp;&nbsp;&nbsp;</c:if>
 			<!-- 답글 표시 -->
 			<c:forEach begin="1" end="${board.reflevel}">&nbsp;&nbsp;&nbsp;</c:forEach>
 			<c:if test="${board.reflevel>0 }">└	</c:if>
