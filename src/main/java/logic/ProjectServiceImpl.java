@@ -74,8 +74,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Board getBoard(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		return boDao.getBoard(num);
 	}
 
 	@Override

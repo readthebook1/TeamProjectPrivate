@@ -84,9 +84,9 @@ public class BoardController {
 			}
 			try {
 				service.boardUpdate(board, request);
-				mav.setViewName("redirect:/board/list.test");
+				mav.setViewName("redirect:/board/listex.sms");
 			} catch (Exception e) {
-				throw new ProjectException("오류가 발생하였습니다." , "/board/list.test");
+				throw new ProjectException("오류가 발생하였습니다." , "/board/listex.sms");
 			}
 			return mav;
 		}
@@ -134,7 +134,7 @@ public class BoardController {
 	
 	@RequestMapping(value="board/*", method=RequestMethod.GET) // 게시글 작성 View로 접속할 때 호출되는 메서드
 	public ModelAndView detail(Integer bNo, HttpServletRequest request) {
-		
+				
 		ModelAndView mav = new ModelAndView();
 		
 		Board board = new Board();

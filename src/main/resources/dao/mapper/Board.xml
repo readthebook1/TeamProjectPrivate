@@ -26,7 +26,7 @@
 		</if>
 		
 		<if test="bNo != null">
-			where bNo = #{bNo}	
+			where bNo = #{bNo}
 		</if>
 	</select>
 </mapper>

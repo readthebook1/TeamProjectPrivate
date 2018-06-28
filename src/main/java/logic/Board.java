@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class Board {
 	private Integer bNo;
 	private Integer sNo;
+	
+	@NotEmpty(message = "내용을 입력하세요.")
 	private String id;
 	private String email;
 	

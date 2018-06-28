@@ -48,7 +48,7 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public Board getBoard(Integer num) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("num", num);
+		map.put("bNo", num);
 		return sqlSession.selectOne(NS + "list", map);
 	}
 	
