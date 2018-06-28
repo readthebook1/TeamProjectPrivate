@@ -23,13 +23,13 @@ public class MemberController {
 		return new Member();
 	}
 	
-	@RequestMapping(value = "member/login", method = RequestMethod.GET)
+	@RequestMapping(value = "member/login", method = RequestMethod.GET) //URL로 검색해서 들어왔을때
 	public String loginForm() {
-		return "member/login";
+		return "member/loginpage";
 	}
 	
 	
-	@RequestMapping(value = "member/login", method = RequestMethod.POST)
+	@RequestMapping(value = "member/login", method = RequestMethod.POST) //id,pw입력해서 로그인 누를때
 	public ModelAndView loginForm(Member member, HttpSession session) {
 
 		ModelAndView mav = new ModelAndView("member/login");
@@ -44,5 +44,9 @@ public class MemberController {
 			return mav;
 		}	
 		return mav;
+	}
+	@RequestMapping(value="member/joinForm")
+	public String joinForm() {
+		return "member/joinForm";
 	}
 }

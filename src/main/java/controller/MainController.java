@@ -15,11 +15,8 @@ public class MainController {
 	
 	@RequestMapping("main")
 	public ModelAndView mainPage() {
-		
 		ModelAndView mav = new ModelAndView("main");
-		
 		return mav;
-		
 	}
 	
 }
