@@ -77,4 +77,40 @@ public class LoginAspect {
 		Object ret = joinPoint.proceed();
 		return ret;
 	}
+	
+	
+	
+	//HostLoginCheck() 메서드 : 댓글 작성에 필요한 부분
+	@Around("execution(* controller.Board*.reply*(..))")
+		public Object hostLoginCheck(ProceedingJoinPoint joinPoint) throws Throwable {
+			
+			HttpSession session = null;
+			Member loginMember = null;
+			boolean hostable = false;
+			
+			for(int i = 0; i < joinPoint.getArgs().length; i++) {
+				if(joinPoint.getArgs()[i] instanceof HttpSession) {
+					session = (HttpSession)joinPoint.getArgs()[i];
+					loginMember = (Member)session.getAttribute("loginMember");
+					
+					if(loginMember == null) {
+						throw new ProjectException("로그인 하세요.", "../main.test");
+					}
+					
+					if(loginMember.getHostName() == null) {
+						throw new ProjectException("호스트 계정으로 가능한 업무입니다.", "../main.test");
+					}
+					hostable = true;
+					break;
+				}
+			}
+			
+			if(!hostable) {
+				throw new ProjectException("전산부로 전화하세요. 세션 객체가 요구됨.", "../main.test");
+			}
+			
+			Object ret = joinPoint.proceed();
+			
+			return ret;
+		}
 }
