@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -50,8 +50,8 @@ function closeRightMenu() {
 <decorator:body/>
 </div>
 <div class="w3-container w3-light-gray" align="right"><p>	
-µ¿ÇØ¹°°ú ¹éµÎ»êÀÌ<br>
-¸¶¸£°í ´âµµ·Ï<br>
+ë™í•´ë¬¼ê³¼ ë°±ë‘ì‚°ì´<br>
+ë§ˆë¥´ê³  ë‹³ë„ë¡<br>
 </p></div>
 
 </body>
