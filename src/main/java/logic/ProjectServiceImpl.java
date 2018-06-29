@@ -39,29 +39,29 @@ public class ProjectServiceImpl implements ProjectService {
 		return boDao.list(searchType, searchContent, pageNum, limit);
 	}
 
-	@Override // 寃���湲� ���깊�� �� �몄�
+	@Override // board Write Method()
 	public void boardWrite(Board board, HttpServletRequest request) {
 		
-		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 ���쇱�� ���� 寃쎌��
-			String img = uploadImgCreate(board.getImg1File(),request);	// �ъ��� ��濡�����怨� ��濡����� ���쇰��� 由ы�닿��쇰� 諛�����.
-			if(img != null) board.setImg1(img); // 諛����� 由ы�닿��� null�� ���� 寃쎌�� Board 媛�泥댁�� �ъ� �대��� ����
+		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { 
+			String img = uploadImgCreate(board.getImg1File(),request);	
+			if(img != null) board.setImg1(img); 
 		}
 		
-		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 ���쇱�� ���� 寃쎌��
+		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { 
 			String img = uploadImgCreate(board.getImg2File(),request);
 			if(img != null) board.setImg2(img);
 		}
 		
-		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 ���쇱�� ���� 寃쎌��
+		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { 
 			String img = uploadImgCreate(board.getImg3File(),request);
 			if(img != null) board.setImg3(img);
 		}
 		
-		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 ���쇱�� ���� 寃쎌��
+		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { 
 			String img = uploadImgCreate(board.getImg1File(),request);
 			if(img != null) board.setImg1(img);
 		}
-		// ���� ��濡��� 怨쇱�� ��
+
 		System.out.println(boDao.hashCode());
 		int num = boDao.maxNum();
 		
@@ -84,25 +84,25 @@ public class ProjectServiceImpl implements ProjectService {
 
 	}
 
-	@Override // 寃���湲� ������ �� �몄�
+	@Override // board Update Method()
 	public void boardUpdate(Board board, HttpServletRequest request) {	
 		
-		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 ���쇱�� ���� 寃쎌��
-			String img = uploadImgCreate(board.getImg1File(),request);	// �ъ��� ��濡�����怨� ��濡����� ���쇰��� 由ы�닿��쇰� 諛�����.
-			if(img != null) board.setImg1(img); // 諛����� 由ы�닿��� null�� ���� 寃쎌�� Board 媛�泥댁�� �ъ� �대��� ����
+		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1  
+			String img = uploadImgCreate(board.getImg1File(),request);	// img1 upload & img1Name setting 
+			if(img != null) board.setImg1(img); // img1Name input
 		}
 		
-		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 ���쇱�� ���� 寃쎌��
+		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { 
 			String img = uploadImgCreate(board.getImg2File(),request);
 			if(img != null) board.setImg2(img);
 		}
 		
-		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 ���쇱�� ���� 寃쎌��
+		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { 
 			String img = uploadImgCreate(board.getImg3File(),request);
 			if(img != null) board.setImg3(img);
 		}
 		
-		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 ���쇱�� ���� 寃쎌��
+		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { 
 			String img = uploadImgCreate(board.getImg1File(),request);
 			if(img != null) board.setImg1(img);
 		}
@@ -148,28 +148,33 @@ public class ProjectServiceImpl implements ProjectService {
 		reserve.setReNo(reserve.getSrNo() + (int)new Date().getTime());
 		reDao.insert(reserve);
 	}
+	
+	@Override
+	public void reserveUpdate(Reserve reserve) {
+		
+	}
 
-	private String uploadImgCreate(MultipartFile picture, HttpServletRequest request) { // 由щ럭寃������� �대�몄� �깅��� �ъ�⑺���� 硫�����
+	private String uploadImgCreate(MultipartFile picture, HttpServletRequest request) { // imgUploadMethod()
 
 		Date date = new Date();
 
 		try {
 			
-			String uploadPath = request.getServletContext().getRealPath("/") + "/picture/"; // ��濡��� 寃쎈� �ㅼ��
-			String orgFile = date.getTime() + picture.getOriginalFilename(); // ���� �대�(���쇰� + ��濡��� ��媛�) �ㅼ��
-			picture.transferTo(new File(uploadPath + orgFile)); // new File(uploadPath + orgFile) : ���� 媛�泥� �ㅼ��
+			String uploadPath = request.getServletContext().getRealPath("/") + "/picture/"; // upload path setting
+			String orgFile = date.getTime() + picture.getOriginalFilename(); // imgFileName setting
+			picture.transferTo(new File(uploadPath + orgFile)); // new File(uploadPath + orgFile) : img upload complite
 			
-			return orgFile; // ���λ�� ���� �대��� 由ы��
+			return orgFile; // imgFileName Return
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-	} // uploadImgCreate()硫������� ��
+	} // uploadImgCreate() end
 
 	@Override
 	public void joinsms(Member member) {
 		memDao.joinsms(member);
 	}
 
-} // ProjectServiceImpl �대���ㅼ�� ��
+} // ProjectServiceImpl end

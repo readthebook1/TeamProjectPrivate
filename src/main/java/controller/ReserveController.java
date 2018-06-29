@@ -20,6 +20,7 @@ public class ReserveController {
 	@Autowired
 	private ProjectService service;
 	
+	// 예약을 등록할 때 호출되는 메서드
 	@RequestMapping(value="reserve/roomReserve", method=RequestMethod.POST)
 	public ModelAndView roomReserve(Reserve reserve) {
 		
@@ -30,13 +31,31 @@ public class ReserveController {
 			mav.setViewName("redirect:/main.sms");
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ProjectException("오류가 발생하였습니다." , "/board/write.sms");
+			throw new ProjectException("오류가 발생하였습니다." , "reserve/list.sms");
 		}
 		return mav;
 	}
 	
+	// 예약을 수정할 때 호출되는 메서드
+	@RequestMapping(value="", method=RequestMethod.POST)
+	public ModelAndView updateReserve(Reserve reserve) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			service.reserveUpdate(reserve);
+			mav.setViewName("redirect:reserve/detail.sms");
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new ProjectException("오류가 발생하였습니다.", "reserve/detail.sms");
+		}
+		
+		return mav;
+		
+	}
 	
 	
+	// 예약 리스트를 확인할 때 호출되는 메서드
 	@RequestMapping(value="reserve/list", method=RequestMethod.GET)
 	public ModelAndView reserveList(String id, Integer pageNum, String searchType, String searchContent) {
 		
@@ -69,13 +88,15 @@ public class ReserveController {
 	}
 	
 	
-	// 예약업무 관련하여 Default 호출값으로 지정한 메서드 : 예약보기, 예약등록화면, 수정화면
+	// 예약업무 관련하여 Default 호출값으로 지정한 메서드 : 특정 예약보기, 예약 등록화면, 수정화면
 	@RequestMapping(value="reserve/*", method=RequestMethod.GET) 
 	public ModelAndView detailReserve(Reserve res, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		Reserve reserve = new Reserve();
+		
+		// 예약이 있다면 해당 예약정보를 보여주기 위한 조건식
 		if(res != null) {
 			if(res.getReNo() != null) {
 				service.getReserve(res.getReNo());

@@ -36,4 +36,6 @@ public interface ProjectService {
 
 	void reserveInsert(Reserve reserve);
 
+	void reserveUpdate(Reserve reserve);
+
 }
