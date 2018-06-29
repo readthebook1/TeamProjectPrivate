@@ -5,34 +5,80 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+var pwdCheck = 0;
+function checkPwd(){
+	var inputed = $('.pw').val(); //비번
+	var reinputed = $('#repwd').val(); //비밀번호 재확인
+	if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){
+		$(".signup").prop("disabled",true);
+		$("#repwd").css("background-color","#FFCECE");
+	}
+	else if(inputed == reinputed){
+		$(".signup").prop("disabled",false);
+		$('#repwd').css("background-color","MediumSeaGreen");
+		pwdCheck = 1;
+	} else if(inputed != reinputed){
+		pwdCheck = 0;
+		$(".signup").prop("disabled",true);
+		$("#repwd").css("background-color","#FFCECE");
+	}
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function() { //이메일 자동 완성
+    var emailaddress = ["@gmail.com",
+    	                 	"@naver.com",
+    	                 	"@hanmail.net",
+    	                 	"@daum.net",
+    	                 	"@hotmail.com"];
+    $("#email1").keyup(function() {
+    	inputmail = new Array(emailaddress.length);
+    	for(i=0;i<emailaddress.length;i++) {
+    		inputmail[i] = $("#email1").val() + emailaddress[i] //inputmail 배열을 내가키로 입력한것 + emailaddress로 저장
+    	}
+        $("#email1").autocomplete({
+            source: inputmail, //자동완성의 소스를 inputmail로
+            select: function(event, ui) {
+                console.log(ui.item);
+            },
+            focus: function(event, ui) {
+                return false;
+                //event.preventDefault();
+            }
+        });
+    });
+});
+</script>
 </head>
 <body>
 <form action="join.sms" method="post">
 <table align="center" cellpadding="1" cellspacing="1" border = "1">
 	<tr>
-		<td>아이디 </td><td><input type="text" placeholder="영문과 숫자조합으로 가즈아!"  name="id"></td>
+		<td>아이디 </td><td><input type="text" placeholder="영문과 숫자조합으로 가즈아!" class = "id" name="id"></td>
 	</tr>
 	<tr>
-		<td>비밀번호 </td><td><input type="password" placeholder="쉬운건 하지 말즈아!" oninput="checkpwd()" name="id"></td>
+		<td>비밀번호 </td><td><input type="password" placeholder="쉬운건 하지 말즈아!" name="upwd" class="pw" onkeyup="checkPwd()"></td>
 	</tr>
 	<tr>
-		<td>비번 확인 </td><td><input type="password" placeholder="비번 입력 한번 더 가즈아!" oninput="checkpwd()" name="id"></td>
+		<td>비번확인 </td><td><input type="password" placeholder="비번 입력 한번 더 가즈아!" name="pw-repeat" class="pass" id="repwd" onkeyup="checkPwd()"></td>
 	</tr>
 	<tr>
-		<td>이름 </td><td><input placeholder="!" type="text" name="id"></td>
+		<td>이름 </td><td><input placeholder="틀릴리 없겠쥬?" type="text" name="name" class="name1" id="name2" onkeyup="nullcheck()"></td>
 	</tr>
 	<tr>
-		<td>이메일 </td><td><input placeholder="자주 쓰는걸로 가즈아!" type="text" name="id" on></td>
+		<td>이메일 </td><td><input placeholder="자주 쓰는걸로 가즈아!" type="text" name="email" id="email1"></td>
 	</tr>
 	<tr>
-		<td>생년월일 </td><td><input placeholder="영문과 숫자조합으로 가즈아!" type="text" name="id"></td>
-	</tr>
-	<tr>
-		<td>아이디 </td><td><input placeholder="영문과 숫자조합으로 가즈아!" type="text" name="id"></td>
+		<td>전화번호 </td><td><input placeholder="예약시 필요!!" type="text" name="mob" class="mob1" id="mob2" onkeyup="nullcheck"></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<input type="submit" value="가입하기">
+			<input type="submit" class="signup" disabled="disabled" value="가입하기">
 			<input type="button" onclick="javascript:history.go(-1)" value="뒤로가기"></td>
 	</tr>
 </table>
