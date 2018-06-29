@@ -7,10 +7,10 @@ public class Member {
 	private String pw;
 	private String name;
 	private String email;
-	private String mob;
+	private String mob; 
 	private Date regDate;
 	private Integer memType;
-	private String hostName;
+	private String hostName; 
 	private Integer hostRegNo;
 	private String address;
 	private String accountNo;
