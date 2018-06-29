@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-06-21 16:04:45</creation_date>
-			<updated_date>2018-06-27 15:47:37</updated_date>
+			<updated_date>2018-06-29 14:01:45</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1080,7 +1080,7 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description>Host계정 전환 시 대표번호로 사용</description>
-			<logical_name>전화번호</logical_name>
+			<logical_name>전화번호(사업자)</logical_name>
 			<physical_name>Tel</physical_name>
 			<type>varchar(n)</type>
 		</word>

@@ -6,30 +6,31 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Board {
-	private Integer bNo;
-	private Integer sNo;
+
+	private Integer bNo;					// 게시글 번호
+	private Integer sNo;					// 빌딩번호
 	
 	@NotEmpty(message = "내용을 입력하세요.")
-	private String id;
-	private String email;
+	private String id;						// 작성자 ID
+	private String email;					// 작성자 Email
 	
 	@NotEmpty(message = "내용을 입력하세요.")
-	private String content;
+	private String content;					// 게시글 내용
 	
-	private String qType;
-	private Date regDate;
-	private Integer ref;
-	private Integer refLevel;
-	private Integer score;
-	private String img1;
-	private String img2;
-	private String img3;
-	private String img4;
-	private MultipartFile img1File;
-	private MultipartFile img2File;
-	private MultipartFile img3File;
-	private MultipartFile img4File;
-	private Integer kind;
+	private String qType;					// 문의유형
+	private Date regDate;					// 등록일자
+	private Integer ref;					// 게시글 원번호
+	private Integer refLevel;				// 게시글 단계번호
+	private Integer score;					// 평점
+	private String img1;					// 사진명1
+	private String img2;					// ...
+	private String img3;					// ...
+	private String img4;					// 사진명4
+	private MultipartFile img1File;			// 사진파일1
+	private MultipartFile img2File;			// ...
+	private MultipartFile img3File;			// ...
+	private MultipartFile img4File;			// 사진파일4
+	private Integer kind;					// 게시글 타입 (0:리뷰, 1:상품문의, 2:관리자에게 문의)
 	
 	public Integer getbNo() {
 		return bNo;
