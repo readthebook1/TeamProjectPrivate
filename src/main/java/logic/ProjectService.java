@@ -26,4 +26,12 @@ public interface ProjectService {
 
 	void joinsms(Member member);
 
+	Reserve getReserve(Integer reNo);
+
+	List<Reserve> getReserveList(String id);
+
+	int reserveCount(String id, String searchType, String searchContent);
+
+	List<Reserve> selectReserveList(String id, String searchType, String searchContent, Integer pageNum, int limit);
+
 }
