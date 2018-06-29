@@ -26,10 +26,6 @@ public class MemberController {
 		return new Member();
 	}
 	
-	@RequestMapping(value = "member/login", method = RequestMethod.GET) //URL로 검색해서 들어왔을때
-	public String loginForm() {
-		return "member/loginpage";
-	}
 	
 	@RequestMapping(value="member/joinForm") //회원가입 폼으로 
 	public String joinForm() {
@@ -52,22 +48,35 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
-	@RequestMapping(value = "member/login", method = RequestMethod.POST) //id,pw입력해서 로그인 누를때
-	public ModelAndView loginForm(Member member, HttpSession session) {
-
-		ModelAndView mav = new ModelAndView("member/login");
-
-		Member dbMember = service.getMember(member.getId());
-
-		if (dbMember.getPw().equals(member.getPw())) {
-			mav.addObject("dbMember", dbMember);
-			mav.setViewName("member/loginSuccess");
-			session.setAttribute("loginMember", dbMember);
-		} else {	
-			return mav;
-		}	
-		return mav;
+	@RequestMapping(value = "member/login", method = RequestMethod.GET) //URL로 검색해서 들어왔을때
+	public String loginForm() {
+		return "member/loginpage";
 	}
 	
+	@RequestMapping(value = "member/login", method = RequestMethod.POST) //id,pw입력해서 로그인 누를때
+	public ModelAndView loginForm(@Valid Member member, BindingResult bindingResult, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		if(bindingResult.hasErrors()) {
+			mav.getModel().putAll(bindingResult.getModel());
+			mav.setViewName("member/loginpage");
+			return mav;
+		}
+		Member dbmember = service.getMember(member.getId());
+		if(dbmember == null) {
+			bindingResult.reject("error.login.id");
+			mav.setViewName("member/loginpage");
+			mav.getModel().putAll(bindingResult.getModel());
+			return mav;
+		}
+		if(dbmember.getPw().equals(member.getPw())) {
+			mav.setViewName("main");
+			mav.addObject("dbmember",dbmember);
+			session.setAttribute("loginMember", dbmember);
+		} else {
+			bindingResult.reject("error.login.password");
+			mav.getModel().putAll(bindingResult.getModel());
+			mav.setViewName("member/loginpage");
+		}
+		return mav;
+	}	
 }

@@ -12,16 +12,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<title><decorator:title/></title>
+<title>
+<decorator:title/>
+</title>
 <decorator:head/>
-
 </head>
-
 <body>
 <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
   <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-  <a href="member/login.sms" class="w3-bar-item w3-button">로그인/회원가입</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <c:if test="${empty sessionScope.loginMember.id}"><a href="login.sms" class="w3-bar-item w3-button">로그인/회원가입</a></c:if>
+  <c:if test="${!empty sessionScope.loginMember.id}"><a href="#" class="w3-bar-item w3-button">로그아웃</a></c:if>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
