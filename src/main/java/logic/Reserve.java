@@ -31,10 +31,10 @@ public class Reserve {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Integer getsRNo() {
+	public Integer getSrNo() {
 		return sRNo;
 	}
-	public void setsRNo(Integer sRNo) {
+	public void setSrNo(Integer sRNo) {
 		this.sRNo = sRNo;
 	}
 	public Date getReDate() {

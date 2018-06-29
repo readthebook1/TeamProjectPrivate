@@ -32,4 +32,6 @@ public interface ProjectService {
 
 	List<Reserve> selectReserveList(String id, String searchType, String searchContent, Integer pageNum, int limit);
 
+	void reserveInsert(Reserve reserve);
+
 }

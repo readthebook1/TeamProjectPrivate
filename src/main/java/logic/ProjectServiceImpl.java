@@ -135,12 +135,18 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Override
 	public int reserveCount(String id, String searchType, String searchContent) {
-		return 0;
+		return reDao.count(searchType, searchContent);
 	}
 
 	@Override
 	public List<Reserve> selectReserveList(String id, String searchType, String searchContent, Integer pageNum, int limit) {
-		return null;
+		return reDao.list(id, searchType, searchContent, pageNum, limit);
+	}
+	
+	@Override
+	public void reserveInsert(Reserve reserve) {
+		reserve.setReNo(reserve.getSrNo() + (int)new Date().getTime());
+		reDao.insert(reserve);
 	}
 
 	private String uploadImgCreate(MultipartFile picture, HttpServletRequest request) { // 리뷰게시판에 이미지 등록시 사용하는 메서드

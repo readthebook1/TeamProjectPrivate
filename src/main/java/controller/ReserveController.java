@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import logic.Board;
+import exception.ProjectException;
 import logic.ProjectService;
 import logic.Reserve;
 
@@ -20,6 +19,23 @@ public class ReserveController {
 	
 	@Autowired
 	private ProjectService service;
+	
+	@RequestMapping(value="reserve/roomReserve", method=RequestMethod.POST)
+	public ModelAndView roomReserve(Reserve reserve) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			service.reserveInsert(reserve);
+			mav.setViewName("redirect:/main.sms");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ProjectException("오류가 발생하였습니다." , "/board/write.sms");
+		}
+		return mav;
+	}
+	
+	
 	
 	@RequestMapping(value="reserve/list", method=RequestMethod.GET)
 	public ModelAndView reserveList(String id, Integer pageNum, String searchType, String searchContent) {

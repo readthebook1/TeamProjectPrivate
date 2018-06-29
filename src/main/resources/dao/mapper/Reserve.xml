@@ -12,6 +12,15 @@
 	
 	<select id="selectList" resultType="Reserve" parameterType="map">
 		select * from Reserve 
+		
+		<if test="searchType != null and searchContent != null">
+			where ${searchType} like '%${searchContent}%'
+		</if>
+		
+		<if test="startrow != null and limit != null">
+			order by ReNo desc limit #{startrow}, #{limit}	
+		</if>
+		
 		<if test="id != null">
 			where id = #{id}
 		</if>
