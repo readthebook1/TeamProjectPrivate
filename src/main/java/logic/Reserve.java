@@ -3,14 +3,14 @@ package logic;
 import java.util.Date;
 
 public class Reserve {
-	private Integer reNo;
-	private String id;
-	private Integer sRNo;
-	private Date reDate;
-	private Date regDate;
-	private Integer totPrice;
-	private Integer reCnt;
-	private Integer reStat;
+	private Integer reNo;			// 예약관리번호
+	private String id;				// 예약자ID
+	private Integer sRNo;			// Room번호
+	private Date reDate;			// 예약 일자
+	private Date regDate;			// 예약 관리 일자
+	private Integer totPrice;		// 금액
+	private Integer reCnt;			// 수량
+	private Integer reStat;			// 예약 구매 상태
 	/* 	reStat : 예약/구매 상태
 	 *  	0 : 예약&결제대기
 	 *   	1 : 결제완료

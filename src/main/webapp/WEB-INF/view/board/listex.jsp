@@ -62,8 +62,8 @@
 			<c:set var="boardcnt" value="${boardcnt -1 }"/>
 			<td align="left">
 			<!-- 답글 표시 -->
-			<c:forEach begin="1" end="${board.reflevel}">&nbsp;&nbsp;&nbsp;</c:forEach>
-			<c:if test="${board.reflevel>0 }">└	</c:if>
+			<c:forEach begin="1" end="${board.refLevel}">&nbsp;&nbsp;&nbsp;</c:forEach>
+			<c:if test="${board.refLevel>0 }">└	</c:if>
 			<a href="detail.sms?bNo=${board.bNo}&pageNum=${pageNum}">TESTBOARD</a></td>
 			<td align="left">${board.id}</td>
 			<td align="center">${board.regDate}</td>

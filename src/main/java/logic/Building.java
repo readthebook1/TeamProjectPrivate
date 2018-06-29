@@ -5,27 +5,27 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Building {
-	private Integer sNo;
-	private String id;
-	private String sName;
-	private String sPreview;
-	private String sContent;
-	private String sType;
-	private String sTag;
-	private String sInfoSub;
-	private String sRule;
+	private Integer sNo;				// 빌딩번호
+	private String id;					// 호스트계정의 아이디
+	private String sName;				// 빌딩의 이름
+	private String sPreview;			// 빌딩의 한줄소개
+	private String sContent;			// 빌딩 설명 내용
+	private String sType;				// 빌딩 유형 (연습실, 세미나실, 회의실 등등)
+	private String sTag;				// 빌딩 태그
+	private String sInfoSub;			// 기타 시설 안내 (시설안내는 개별적으로 Room에 설정)
+	private String sRule;				// 이용 규칙
 	private List<String> sTagList;		// STag List
 	private List<String> sInfoSubList;	// SInfoSub List
 	private List<String> sRuleList;		// SRule List
-	private String sBHour;
-	private String sHDay;
+	private String sBHour;				// 운영 시간
+	private String sHDay;				// 휴무요일
 	private String sImg1;					// 대표이미지파일명을 DB에 저장하기 위한 객체
 	private MultipartFile sImg1File;		// 대표이미지파일을 업로드 하기 위한 객체
 	private String sImg2;					// 이미지(여러장)파일명들을 DB에 저장하기 위한 객체
 	private List<MultipartFile> sImg2Files;	// 다중이미지파일을 업로드 하기 위한 객체
 	private List<String> sImg2Name;			// View단으로 이미지파일명들을 보내기 위한 List 객체
-	private String sAddress;
-	private Integer sStat;
+	private String sAddress;			// 빌딩 주소
+	private Integer sStat;				// 승인 여부
 	private List<Room> room;				// 화면에 표시할 Room 객체들
 	
 	public Integer getsNo() {

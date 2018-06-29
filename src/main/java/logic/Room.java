@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Room {
-	private Integer sNo;
-	private Integer sRNo;
-	private String sRName;
-	private String sRType;
-	private List<String> sRTypeList;
-	private String sRContent;
-	private String sRInfo;	// 세부시설안내 DB 저장용
-	private List<String> sRInfoList;	// 세부시설안내 View 전달용 리스트 객체
-	private Integer sResType;	// 0 = 시간 단위 예약 / 1 = 일자 단위 예약
-	private String sRPersonLimit;	// 예약제한인원 설명 작성
-	private Integer sPrice;
-	private String sRImg;
-	private List<MultipartFile> sRImgList;
-	private List<String> sRImgNameList;
+	private Integer sNo;				// 빌딩번호
+	private Integer sRNo;				// Room 번호
+	private String sRName;				// Room 이름
+	private String sRType;				// Room 유형
+	private List<String> sRTypeList;	// Room 유형 View 전달용 리스트 객체
+	private String sRContent;			// Room 설명
+	private String sRInfo;				// Room시설안내 DB 저장용
+	private List<String> sRInfoList;	// Room시설안내 View 전달용 리스트 객체
+	private Integer sResType;			// 0 = 시간 단위 예약 / 1 = 일자 단위 예약
+	private String sRPersonLimit;		// 예약제한인원 설명 작성
+	private Integer sPrice;				// Room 가격
+	private String sRImg;				// Room 이미지파일명 DB 저장용
+	private List<MultipartFile> sRImgList;	// Room 이미지파일 View 전달용 리스트 객체
+	private List<String> sRImgNameList;		// Room 이미지파일명 View 전달용 리스트 객체
 	
 	public Integer getsNo() {
 		return sNo;

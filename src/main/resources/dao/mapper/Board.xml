@@ -12,17 +12,16 @@
 	
 	<select id="list" resultType="Board" parameterType="map">
 		select * from board
-		
 		<if test="searchType != null and searchContent != null">
-			where ${searchType} like '%${searchContent}%'	
+			where ${searchType} like '%${searchContent}%'
 		</if>
 		
 		<if test="startrow != null and limit != null">
-			order by ref desc, refstep asc limit #{startrow}, #{limit}	
+			order by ref desc limit #{startrow}, #{limit}	
 		</if>
 		
 		<if test="bNo != null">
-			where bNo = #{bNo}	
+			where bNo = #{bNo}
 		</if>
 	</select>
 </mapper>

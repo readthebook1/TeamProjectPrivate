@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import dao.BoardDao;
 import exception.ProjectException;
 import logic.Board;
 import logic.Member;
@@ -23,7 +22,7 @@ public class BoardController {
 	@Autowired
 	private ProjectService service;
 	
-	@RequestMapping("board/list")
+	@RequestMapping("board/listex")
 	public ModelAndView list (Integer pageNum, String searchType, String searchContent) {
 		
 		if(pageNum == null || pageNum.toString().equals("")) {
@@ -67,7 +66,8 @@ public class BoardController {
 			service.boardWrite(board, request);
 			mav.setViewName("redirect:/board/listex.sms");
 		} catch (Exception e) {
-			throw new ProjectException("오류가 발생하였습니다." , "/board/listex.sms");
+			e.printStackTrace();
+			throw new ProjectException("오류가 발생하였습니다." , "/board/write.sms");
 		}
 		return mav;
 	}
@@ -84,9 +84,9 @@ public class BoardController {
 			}
 			try {
 				service.boardUpdate(board, request);
-				mav.setViewName("redirect:/board/list.test");
+				mav.setViewName("redirect:/board/listex.sms");
 			} catch (Exception e) {
-				throw new ProjectException("오류가 발생하였습니다." , "/board/list.test");
+				throw new ProjectException("오류가 발생하였습니다." , "/board/listex.sms");
 			}
 			return mav;
 		}
@@ -121,29 +121,29 @@ public class BoardController {
 		
 		Board dbBoard = service.getBoard(bNo);
 		
-		if(dbBoard.getId().equals(mem.getId())) {
-			
+//		 if(dbBoard.getId().equals(mem.getId())) {	
 			service.boardDelete(bNo);
-			mav.setViewName("redirect:/board/list.shop?pageNum=" + pageNum);
+			mav.setViewName("redirect:/board/listex.sms?pageNum=" + pageNum);
 			return mav;
-		} else {
-			throw new ProjectException("비밀번호 오류","delete.sms?bNo=" + bNo + "&pageNum=" + pageNum);
-		}
+//		} else {
+//			throw new ProjectException("비밀번호 오류","delete.sms?bNo=" + bNo + "&pageNum=" + pageNum);
+//		}
 	}
 	
 	
 	@RequestMapping(value="board/*", method=RequestMethod.GET) // 게시글 작성 View로 접속할 때 호출되는 메서드
-	public ModelAndView detail(Integer num, HttpServletRequest request) {
-		
-		ModelAndView mav = new ModelAndView();
-		Board board = new Board();
+	public ModelAndView detail(Integer bNo, HttpServletRequest request) {
 				
-		if(num != null) {
-			board = service.getBoard(num);
+		ModelAndView mav = new ModelAndView();
+		
+		Board board = new Board();
+
+		if(bNo != null) {
+			board = service.getBoard(bNo);
 			String url = request.getServletPath();
 			
 			if(url.contains("/board/detail.sms")) {
-				service.updateReadCnt(num);
+				service.updateReadCnt(bNo);
 			}
 		}
 		

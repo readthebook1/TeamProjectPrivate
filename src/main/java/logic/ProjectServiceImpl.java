@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,8 +15,10 @@ import dao.MemberDao;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
-
+	
+	@Autowired
 	private MemberDao memDao;
+	@Autowired
 	private BoardDao boDao;
 
 	@Override
@@ -25,14 +28,12 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public int boardcount(String searchType, String searchContent) {
-		// TODO Auto-generated method stub
-		return 0;
+		return boDao.count(searchType, searchContent);
 	}
 
 	@Override
 	public List<Board> boardList(String searchType, String searchContent, Integer pageNum, int limit) {
-		// TODO Auto-generated method stub
-		return null;
+		return boDao.list(searchType, searchContent, pageNum, limit);
 	}
 
 	@Override // 게시글 작성할 때 호출
@@ -58,7 +59,7 @@ public class ProjectServiceImpl implements ProjectService {
 			if(img != null) board.setImg1(img);
 		}
 		// 파일 업로드 과정 끝
-		
+		System.out.println(boDao.hashCode());
 		int num = boDao.maxNum();
 		
 		board.setbNo(++num);
@@ -71,8 +72,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Board getBoard(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		return boDao.getBoard(num);
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class ProjectServiceImpl implements ProjectService {
 		try {
 			
 			String uploadPath = request.getServletContext().getRealPath("/") + "/picture/"; // 업로드 경로 설정
-			String orgFile = picture.getOriginalFilename() + date.getTime(); // 파일 이름(파일명 + 업로드 시간) 설정
+			String orgFile = date.getTime() + picture.getOriginalFilename(); // 파일 이름(파일명 + 업로드 시간) 설정
 			picture.transferTo(new File(uploadPath + orgFile)); // new File(uploadPath + orgFile) : 파일 객체 설정
 			
 			return orgFile; // 저장된 파일 이름을 리턴
