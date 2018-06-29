@@ -121,14 +121,13 @@ public class BoardController {
 		
 		Board dbBoard = service.getBoard(bNo);
 		
-		// if(dbBoard.getId().equals(mem.getId())) {
-			
+//		 if(dbBoard.getId().equals(mem.getId())) {	
 			service.boardDelete(bNo);
 			mav.setViewName("redirect:/board/listex.sms?pageNum=" + pageNum);
 			return mav;
-		//} else {
-		//	throw new ProjectException("비밀번호 오류","delete.sms?bNo=" + bNo + "&pageNum=" + pageNum);
-		//}
+//		} else {
+//			throw new ProjectException("비밀번호 오류","delete.sms?bNo=" + bNo + "&pageNum=" + pageNum);
+//		}
 	}
 	
 	
