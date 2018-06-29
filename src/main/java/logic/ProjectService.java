@@ -24,6 +24,8 @@ public interface ProjectService {
 
 	void updateReadCnt(Integer num);
 
+	void joinsms(Member member);
+
 	Reserve getReserve(Integer reNo);
 
 	List<Reserve> getReserveList(String id);

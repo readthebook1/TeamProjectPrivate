@@ -39,29 +39,29 @@ public class ProjectServiceImpl implements ProjectService {
 		return boDao.list(searchType, searchContent, pageNum, limit);
 	}
 
-	@Override // 게시글 작성할 때 호출
+	@Override // 寃���湲� ���깊�� �� �몄�
 	public void boardWrite(Board board, HttpServletRequest request) {
 		
-		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 파일이 있을 경우
-			String img = uploadImgCreate(board.getImg1File(),request);	// 사진을 업로드하고 업로드한 파일명을 리턴값으로 받아옴.
-			if(img != null) board.setImg1(img); // 받아온 리턴값이 null이 아닌 경우 Board 객체에 사진 이름을 저장
+		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 ���쇱�� ���� 寃쎌��
+			String img = uploadImgCreate(board.getImg1File(),request);	// �ъ��� ��濡�����怨� ��濡����� ���쇰��� 由ы�닿��쇰� 諛�����.
+			if(img != null) board.setImg1(img); // 諛����� 由ы�닿��� null�� ���� 寃쎌�� Board 媛�泥댁�� �ъ� �대��� ����
 		}
 		
-		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 파일이 있을 경우
+		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 ���쇱�� ���� 寃쎌��
 			String img = uploadImgCreate(board.getImg2File(),request);
 			if(img != null) board.setImg2(img);
 		}
 		
-		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 파일이 있을 경우
+		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 ���쇱�� ���� 寃쎌��
 			String img = uploadImgCreate(board.getImg3File(),request);
 			if(img != null) board.setImg3(img);
 		}
 		
-		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 파일이 있을 경우
+		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 ���쇱�� ���� 寃쎌��
 			String img = uploadImgCreate(board.getImg1File(),request);
 			if(img != null) board.setImg1(img);
 		}
-		// 파일 업로드 과정 끝
+		// ���� ��濡��� 怨쇱�� ��
 		System.out.println(boDao.hashCode());
 		int num = boDao.maxNum();
 		
@@ -84,25 +84,25 @@ public class ProjectServiceImpl implements ProjectService {
 
 	}
 
-	@Override // 게시글 수정할 때 호출
+	@Override // 寃���湲� ������ �� �몄�
 	public void boardUpdate(Board board, HttpServletRequest request) {	
 		
-		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 파일이 있을 경우
-			String img = uploadImgCreate(board.getImg1File(),request);	// 사진을 업로드하고 업로드한 파일명을 리턴값으로 받아옴.
-			if(img != null) board.setImg1(img); // 받아온 리턴값이 null이 아닌 경우 Board 객체에 사진 이름을 저장
+		if (board.getImg1File() != null && !board.getImg1File().isEmpty()) { // img1 ���쇱�� ���� 寃쎌��
+			String img = uploadImgCreate(board.getImg1File(),request);	// �ъ��� ��濡�����怨� ��濡����� ���쇰��� 由ы�닿��쇰� 諛�����.
+			if(img != null) board.setImg1(img); // 諛����� 由ы�닿��� null�� ���� 寃쎌�� Board 媛�泥댁�� �ъ� �대��� ����
 		}
 		
-		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 파일이 있을 경우
+		if (board.getImg2File() != null && !board.getImg2File().isEmpty()) { // img2 ���쇱�� ���� 寃쎌��
 			String img = uploadImgCreate(board.getImg2File(),request);
 			if(img != null) board.setImg2(img);
 		}
 		
-		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 파일이 있을 경우
+		if (board.getImg3File() != null && !board.getImg3File().isEmpty()) { // img3 ���쇱�� ���� 寃쎌��
 			String img = uploadImgCreate(board.getImg3File(),request);
 			if(img != null) board.setImg3(img);
 		}
 		
-		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 파일이 있을 경우
+		if (board.getImg4File() != null && !board.getImg4File().isEmpty()) { // img4 ���쇱�� ���� 寃쎌��
 			String img = uploadImgCreate(board.getImg1File(),request);
 			if(img != null) board.setImg1(img);
 		}
@@ -149,22 +149,27 @@ public class ProjectServiceImpl implements ProjectService {
 		reDao.insert(reserve);
 	}
 
-	private String uploadImgCreate(MultipartFile picture, HttpServletRequest request) { // 리뷰게시판에 이미지 등록시 사용하는 메서드
+	private String uploadImgCreate(MultipartFile picture, HttpServletRequest request) { // 由щ럭寃������� �대�몄� �깅��� �ъ�⑺���� 硫�����
 
 		Date date = new Date();
 
 		try {
 			
-			String uploadPath = request.getServletContext().getRealPath("/") + "/picture/"; // 업로드 경로 설정
-			String orgFile = date.getTime() + picture.getOriginalFilename(); // 파일 이름(파일명 + 업로드 시간) 설정
-			picture.transferTo(new File(uploadPath + orgFile)); // new File(uploadPath + orgFile) : 파일 객체 설정
+			String uploadPath = request.getServletContext().getRealPath("/") + "/picture/"; // ��濡��� 寃쎈� �ㅼ��
+			String orgFile = date.getTime() + picture.getOriginalFilename(); // ���� �대�(���쇰� + ��濡��� ��媛�) �ㅼ��
+			picture.transferTo(new File(uploadPath + orgFile)); // new File(uploadPath + orgFile) : ���� 媛�泥� �ㅼ��
 			
-			return orgFile; // 저장된 파일 이름을 리턴
+			return orgFile; // ���λ�� ���� �대��� 由ы��
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-	} // uploadImgCreate()메서드의 끝
+	} // uploadImgCreate()硫������� ��
 
-} // ProjectServiceImpl 클래스의 끝
+	@Override
+	public void joinsms(Member member) {
+		memDao.joinsms(member);
+	}
+
+} // ProjectServiceImpl �대���ㅼ�� ��
