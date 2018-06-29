@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDao;
 import dao.MemberDao;
+import dao.ReserveDao;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -20,6 +21,8 @@ public class ProjectServiceImpl implements ProjectService {
 	private MemberDao memDao;
 	@Autowired
 	private BoardDao boDao;
+	@Autowired
+	private ReserveDao reDao;
 
 	@Override
 	public Member getMember(String id) {
@@ -117,6 +120,27 @@ public class ProjectServiceImpl implements ProjectService {
 	public void updateReadCnt(Integer num) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public Reserve getReserve(Integer reNo) {
+		return reDao.getReserve(reNo);
+	}
+	
+
+	@Override
+	public List<Reserve> getReserveList(String id) {
+		return reDao.getReserveList(id);
+	}
+	
+	@Override
+	public int reserveCount(String id, String searchType, String searchContent) {
+		return 0;
+	}
+
+	@Override
+	public List<Reserve> selectReserveList(String id, String searchType, String searchContent, Integer pageNum, int limit) {
+		return null;
 	}
 
 	private String uploadImgCreate(MultipartFile picture, HttpServletRequest request) { // 리뷰게시판에 이미지 등록시 사용하는 메서드

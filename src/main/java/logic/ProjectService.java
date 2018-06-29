@@ -24,4 +24,12 @@ public interface ProjectService {
 
 	void updateReadCnt(Integer num);
 
+	Reserve getReserve(Integer reNo);
+
+	List<Reserve> getReserveList(String id);
+
+	int reserveCount(String id, String searchType, String searchContent);
+
+	List<Reserve> selectReserveList(String id, String searchType, String searchContent, Integer pageNum, int limit);
+
 }

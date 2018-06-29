@@ -9,10 +9,11 @@ public class Board {
 
 	private Integer bNo;					// 게시글 번호
 	private Integer sNo;					// 빌딩번호
-	
-	@NotEmpty(message = "내용을 입력하세요.")
 	private String id;						// 작성자 ID
 	private String email;					// 작성자 Email
+	
+	@NotEmpty(message = "제목을 입력하세요.")
+	private String subject;					// 게시글 제목
 	
 	@NotEmpty(message = "내용을 입력하세요.")
 	private String content;					// 게시글 내용
@@ -55,6 +56,12 @@ public class Board {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 	public String getContent() {
 		return content;
@@ -149,10 +156,10 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		return "Board1 [bNo=" + bNo + ", sNo=" + sNo + ", id=" + id + ", email=" + email + ", content=" + content
-				+ ", qType=" + qType + ", regDate=" + regDate + ", ref=" + ref + ", refLevel=" + refLevel + ", score="
-				+ score + ", img1=" + img1 + ", img2=" + img2 + ", img3=" + img3 + ", img4=" + img4 + ", img1File="
-				+ img1File + ", img2File=" + img2File + ", img3File=" + img3File + ", img4File=" + img4File + ", kind="
-				+ kind + "]";
+		return "Board [bNo=" + bNo + ", sNo=" + sNo + ", id=" + id + ", email=" + email + ", subject=" + subject
+				+ ", content=" + content + ", qType=" + qType + ", regDate=" + regDate + ", ref=" + ref + ", refLevel="
+				+ refLevel + ", score=" + score + ", img1=" + img1 + ", img2=" + img2 + ", img3=" + img3 + ", img4="
+				+ img4 + ", img1File=" + img1File + ", img2File=" + img2File + ", img3File=" + img3File + ", img4File="
+				+ img4File + ", kind=" + kind + "]";
 	}
 }
