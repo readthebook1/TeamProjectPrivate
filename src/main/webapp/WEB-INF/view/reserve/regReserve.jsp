@@ -16,7 +16,7 @@
 		<tr><td align="center">Room번호</td><td><form:input path="srNo"/></tr>
 		<tr><td align="center">수량</td><td><form:input path="reCnt"/></tr>
 		<tr><td align="center">대금</td><td><form:input path="totPrice"/></tr>
-		<tr><td align="center">일자</td><td><input type="Date" name="reDate">
+		<tr><td align="center">예약일자</td><td><form:input path="reDate"/></tr>
 		<tr><td align="center" colspan="2"><a href="javascript:document.f.submit()">[게시물등록]</a>&nbsp;&nbsp;<a href="listex.sms">[게시판목록]</a></td></tr>
 	</table>
 </form:form>

@@ -5,8 +5,8 @@ import java.util.Date;
 public class Reserve {
 	private Integer reNo;			// 예약관리번호
 	private String id;				// 예약자ID
-	private Integer sRNo;			// Room번호
-	private Date reDate;			// 예약 일자
+	private Integer srNo;			// Room번호
+	private Integer reDate;			// 예약 일자
 	private Date regDate;			// 예약 관리 일자
 	private Integer totPrice;		// 금액
 	private Integer reCnt;			// 수량
@@ -32,15 +32,15 @@ public class Reserve {
 		this.id = id;
 	}
 	public Integer getSrNo() {
-		return sRNo;
+		return srNo;
 	}
 	public void setSrNo(Integer sRNo) {
-		this.sRNo = sRNo;
+		this.srNo = sRNo;
 	}
-	public Date getReDate() {
+	public Integer getReDate() {
 		return reDate;
 	}
-	public void setReDate(Date reDate) {
+	public void setReDate(Integer reDate) {
 		this.reDate = reDate;
 	}
 	public Date getRegDate() {
@@ -70,7 +70,7 @@ public class Reserve {
 	
 	@Override
 	public String toString() {
-		return "Reserve [reNo=" + reNo + ", id=" + id + ", sRNo=" + sRNo + ", reDate=" + reDate + ", regDate=" + regDate
+		return "Reserve [reNo=" + reNo + ", id=" + id + ", srNo=" + srNo + ", reDate=" + reDate + ", regDate=" + regDate
 				+ ", totPrice=" + totPrice + ", reCnt=" + reCnt + ", reStat=" + reStat + "]";
 	}
 }
