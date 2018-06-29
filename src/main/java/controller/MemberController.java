@@ -1,9 +1,12 @@
 package controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +31,27 @@ public class MemberController {
 		return "member/loginpage";
 	}
 	
+	@RequestMapping(value="member/joinForm") //회원가입 폼으로 
+	public String joinForm() {
+		return "member/joinForm";
+	}
+	
+	@RequestMapping("member/join") //회원가입
+	public ModelAndView join(@Valid Member member, BindingResult bindingResult) {
+		ModelAndView mav = new ModelAndView("member/joinForm");
+		if(bindingResult.hasErrors()) {
+			mav.getModel().putAll(bindingResult.getModel());
+			return mav;
+		}
+		try {
+		service.joinsms(member);
+		mav.setViewName("member/loginpage");
+		mav.addObject("member",member);
+		} catch(DataIntegrityViolationException e) {
+			bindingResult.reject("error.duplicate.user");
+		}
+		return mav;
+	}
 	
 	@RequestMapping(value = "member/login", method = RequestMethod.POST) //id,pw입력해서 로그인 누를때
 	public ModelAndView loginForm(Member member, HttpSession session) {
@@ -45,8 +69,5 @@ public class MemberController {
 		}	
 		return mav;
 	}
-	@RequestMapping(value="member/joinForm")
-	public String joinForm() {
-		return "member/joinForm";
-	}
+	
 }

@@ -24,4 +24,6 @@ public interface ProjectService {
 
 	void updateReadCnt(Integer num);
 
+	void joinsms(Member member);
+
 }
