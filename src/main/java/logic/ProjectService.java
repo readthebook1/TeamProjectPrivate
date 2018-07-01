@@ -38,4 +38,6 @@ public interface ProjectService {
 
 	void reserveUpdate(Reserve reserve);
 
+	void insertRoom(Room room);
+
 }

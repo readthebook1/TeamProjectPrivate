@@ -3,12 +3,13 @@ package dao.mapper;
 import org.apache.ibatis.annotations.Insert;
 
 import logic.Member;
+import logic.Room;
 
 public interface RoomMapper {
 	
-	@Insert("insert into Member (id, pw, name, email, mob, regDate, memType, hostName, hostRegNo, address, accountNo) "
-			+ "values(#{id}, #{pw}, #{name}, #{email}, #{mob}, now() ,#{memType}, #{hostName}, #{hostRegNo}, #{address}, #{accountNo})")
-	void insert(Member member);
+	
+	@Insert("insert into room (sno,srno) values(#{sNo},#{sRNo})")
+	void insertRoom(Room room);
 
 	
 //	@Update("update userAccount set userName=#{userName}, phoneNo=#{phoneNo},"

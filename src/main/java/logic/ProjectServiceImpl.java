@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import dao.BoardDao;
 import dao.MemberDao;
 import dao.ReserveDao;
+import dao.RoomDao;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -23,6 +24,8 @@ public class ProjectServiceImpl implements ProjectService {
 	private BoardDao boDao;
 	@Autowired
 	private ReserveDao reDao;
+	@Autowired
+	private RoomDao roomDao;
 
 	@Override
 	public Member getMember(String id) {
@@ -175,6 +178,12 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void joinsms(Member member) {
 		memDao.joinsms(member);
+	}
+
+	@Override
+	public void insertRoom(Room room) {
+		roomDao.insertRoom(room);
+		
 	}
 
 } // ProjectServiceImpl end
